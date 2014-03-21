@@ -4,14 +4,20 @@ __author__ = 'zm'
 # All the specific routing class should inherit from this class
 
 class Routing:
-    def __init__(self):
+    def __init__(self, topo=None):
         # path is identified by source node ID and destination node ID
         self.pathList = {}
+        self.topo = topo
 
-    def BuildPath(self, topo):
+    def BuildAllPath(self):
         """
         This method build path for each pair of nodes in topo.
         This is the core component since it indicates the routing mechanism: how to build path bewteen a source and a destination.
+        """
+    def BuildPath(self, srcId, dstId):
+        """
+        This method can be inherited as requiring.
+        Only compute one path presented by source and destination id
         """
 
     def GetPath(self, srcId, dstId):
@@ -21,12 +27,12 @@ class Routing:
         """
         return self.pathList[srcId, dstId]
 
-    def BFS(self, topo):
+    def BFS(self):
         """
         For each node, use BFS to generate shortest path from this node to each other nodes
         Path length is calculated by hop numbers.
         """
-        nodes = topo.GetNodes()
+        nodes = self.topo.GetNodes()
         for curNode in nodes[1:]:
             # clean nodes color and parent node id
             for node in nodes[1:]:
@@ -56,9 +62,3 @@ class Routing:
 
     def __del__(self):
         pass
-	
-	
-	
-	
-	
-	

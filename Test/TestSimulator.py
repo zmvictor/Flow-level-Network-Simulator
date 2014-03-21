@@ -20,8 +20,8 @@ def main():
 def TestBFS():
     testTopo = TestTopology()
     testTopo.CreateTopology()
-    testBFS = Routing()
-    testBFS.BFS(testTopo)
+    testBFS = Routing(testTopo)
+    testBFS.BFS()
     print testBFS.pathList
 
 if __name__ == "__main__":

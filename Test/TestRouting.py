@@ -6,7 +6,7 @@ sys.path.append("..")
 from Src.Routing import *
 
 class TestRouting(Routing):
-    def BuildPath(self, topo):
+    def BuildPath(self):
         self.pathList[(1, 2)] = [1, 2]
         self.pathList[(1, 3)] = [1, 2, 3]
         self.pathList[(2, 3)] = [2, 3]
