@@ -86,13 +86,3 @@ class ECMP(Routing):
 
     def __del__(self):
         pass
-
-
-topo = FatTree(K=16)
-topo.CreateTopology()
-ecmp = ECMP(topo)
-ecmp.BuildAllPath()
-print ecmp.pathList[1, 100]
-
-
-

@@ -33,6 +33,7 @@ class Routing:
         Path length is calculated by hop numbers.
         """
         nodes = self.topo.GetNodes()
+        # the first node is None, node id is start from 1
         for curNode in nodes[1:]:
             # clean nodes color and parent node id
             for node in nodes[1:]:

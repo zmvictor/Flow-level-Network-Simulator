@@ -33,6 +33,8 @@ class FlowScheduler:
         It can read flow info from a configuration file or assigned by some parameters.
         Return the flow list.
         """
+        self.toStartFlows = self.flows[:]
+        self.toStartFlows.sort(key=lambda x: x.startTime)
 
     def GetFlow(self, flowId):
         """

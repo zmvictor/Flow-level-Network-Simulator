@@ -24,20 +24,20 @@ class Simulator:
         """
         Assign the routing method in a centralized way.
         """
-        self.routing = Routing()
-        self.routing.BuildPath(self.topo)
+        self.routing = Routing(self.topo)
         # We can get path by
         # path_3_5 = self.routing.GetPath(3,5)             # result is a list with node ids
 
-    def AssignScheduler(self, FlowScheduler):
+    def AssignScheduler(self, FlowScheduler, args):
         """
         Assign the flow scheduler. It also assign the flows to be scheduled.
         """
         self.sched = FlowScheduler()
-        self.sched.AssignFlows()
+        self.sched.AssignFlows(args)
         self.sched.AssignLinks(self.topo.GetLinks())
         self.flows = self.sched.GetAllFlows()
         for flow in self.flows:
+            self.routing.BuildPath(flow.startId, flow.endId)
             pathNodeIds = self.routing.GetPath(flow.startId, flow.endId)
             flow.BuildPath(pathNodeIds)
 
